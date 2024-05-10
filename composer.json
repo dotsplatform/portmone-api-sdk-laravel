@@ -36,6 +36,13 @@
         }
     },
     "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dots\\Portmone\\App\\PortmoneServiceProvider"
+            ]
+        }
+    },
     "scripts": {
         "post-autoload-dump": [
             "@clear",
