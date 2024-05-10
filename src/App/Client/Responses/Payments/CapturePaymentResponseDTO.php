@@ -16,11 +16,11 @@ class CapturePaymentResponseDTO extends PortmoneResponseDTO
 
     protected string $response_status;
 
-    protected string $response_code;
+    protected ?string $response_code;
 
-    protected string $reverse_status;
+    protected ?string $reverse_status;
 
-    protected string $response_description;
+    protected ?string $response_description;
 
     protected string $merchant_id;
 
@@ -34,17 +34,17 @@ class CapturePaymentResponseDTO extends PortmoneResponseDTO
         return $this->response_status;
     }
 
-    public function getResponseCode(): string
+    public function getResponseCode(): ?string
     {
         return $this->response_code;
     }
 
-    public function getReverseStatus(): string
+    public function getReverseStatus(): ?string
     {
         return $this->reverse_status;
     }
 
-    public function getResponseDescription(): string
+    public function getResponseDescription(): ?string
     {
         return $this->response_description;
     }

@@ -7,8 +7,9 @@
 
 namespace Dots\Portmone\App\Client\Resources\Consts;
 
-
-class ResponseStatus
+abstract class ResponseStatus
 {
+    public const SUCCESS = 'success';
 
+    public const FAILURE = 'failure';
 }

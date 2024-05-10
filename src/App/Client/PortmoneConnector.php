@@ -107,4 +107,11 @@ class PortmoneConnector extends Connector
 
         return new PortmoneException($errorResponse);
     }
+
+    public function shouldThrowRequestException(Response $response): bool
+    {
+        $errorResponse = ErrorResponseDTO::fromResponse($response);
+
+        return $errorResponse->isResponseStatusSuccess();
+    }
 }

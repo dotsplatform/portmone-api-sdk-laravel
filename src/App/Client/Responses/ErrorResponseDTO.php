@@ -7,6 +7,8 @@
 
 namespace Dots\Portmone\App\Client\Responses;
 
+use Dots\Portmone\App\Client\Resources\Consts\ResponseStatus;
+
 class ErrorResponseDTO extends PortmoneResponseDTO
 {
     protected ?string $response_status;
@@ -14,6 +16,25 @@ class ErrorResponseDTO extends PortmoneResponseDTO
     protected ?string $error_code;
 
     protected ?string $error_message;
+
+    protected array $data;
+
+    public static function fromArray(array $data): static
+    {
+        $data['data'] = $data;
+
+        return parent::fromArray($data);
+    }
+
+    public function isResponseStatusSuccess(): bool
+    {
+        return $this->response_status === ResponseStatus::SUCCESS;
+    }
+
+    public function isResponseStatusFailure(): bool
+    {
+        return $this->response_status === ResponseStatus::FAILURE;
+    }
 
     public function getResponseStatus(): ?string
     {
@@ -28,5 +49,10 @@ class ErrorResponseDTO extends PortmoneResponseDTO
     public function getErrorMessage(): ?string
     {
         return $this->error_message;
+    }
+
+    public function getData(): array
+    {
+        return $this->data;
     }
 }
