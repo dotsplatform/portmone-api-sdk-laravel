@@ -20,6 +20,7 @@ use Dots\Portmone\App\Client\Requests\Payments\PaymentInfoRequest;
 use Dots\Portmone\App\Client\Requests\Payments\ReversePaymentRequest;
 use Dots\Portmone\App\Client\Resources\PortmonePayment;
 use Dots\Portmone\App\Client\Responses\ErrorResponseDTO;
+use Dots\Portmone\App\Client\Responses\Payments\CapturePaymentResponseDTO;
 use Dots\Portmone\App\Client\Responses\Payments\CreatePaymentResponseDTO;
 use Dots\Portmone\App\Client\Responses\Payments\ReversePaymentResponseDTO;
 use RuntimeException;
@@ -60,11 +61,11 @@ class PortmoneConnector extends Connector
     /**
      * @throws PortmoneException
      */
-    public function capturePayment(CapturePaymentRequestDTO $dto): void
+    public function capturePayment(CapturePaymentRequestDTO $dto): CapturePaymentResponseDTO
     {
         $this->authenticateRequests();
 
-        $this->send(new CapturePaymentRequest($dto));
+        return $this->send(new CapturePaymentRequest($dto))->dto();
     }
 
     /**
