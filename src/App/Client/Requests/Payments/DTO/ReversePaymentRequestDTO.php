@@ -20,6 +20,13 @@ class ReversePaymentRequestDTO extends DTO
 
     protected int $amount;
 
+    public function toRequestData(): array
+    {
+        return [
+            'request' => $this->toArray(),
+        ];
+    }
+
     public function getOrderId(): string
     {
         return $this->order_id;

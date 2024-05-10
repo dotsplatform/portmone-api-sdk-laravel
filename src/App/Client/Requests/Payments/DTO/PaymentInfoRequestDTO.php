@@ -18,6 +18,13 @@ class PaymentInfoRequestDTO extends DTO
 
     protected string $order_desc;
 
+    public function toRequestData(): array
+    {
+        return [
+            'request' => $this->toArray(),
+        ];
+    }
+
     public function getOrderId(): string
     {
         return $this->order_id;

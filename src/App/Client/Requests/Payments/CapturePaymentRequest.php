@@ -23,7 +23,7 @@ class CapturePaymentRequest extends PostPortmoneRequest
 
     protected function defaultBody(): array
     {
-        return $this->dto->toArray();
+        return $this->dto->toRequestData();
     }
 
     public function resolveEndpoint(): string

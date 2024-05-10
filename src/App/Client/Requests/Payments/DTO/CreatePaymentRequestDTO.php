@@ -26,6 +26,13 @@ class CreatePaymentRequestDTO extends DTO
 
     protected string $server_callback_url;
 
+    public function toRequestData(): array
+    {
+        return [
+            'request' => $this->toArray(),
+        ];
+    }
+
     public function getOrderId(): string
     {
         return $this->order_id;
