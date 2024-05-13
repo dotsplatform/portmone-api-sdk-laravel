@@ -112,6 +112,6 @@ class PortmoneConnector extends Connector
     {
         $errorResponse = ErrorResponseDTO::fromResponse($response);
 
-        return $errorResponse->isResponseStatusSuccess();
+        return ! $errorResponse->isResponseStatusSuccess();
     }
 }

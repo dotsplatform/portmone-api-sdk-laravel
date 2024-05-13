@@ -13,10 +13,13 @@ class PortmoneSignature
 {
     public static function sign(PortmoneAuthDTO $dto, array $params): array
     {
+        if (empty($params['request'])) {
+            return $params;
+        }
         if (! empty($params['request']['signature'])) {
             return $params;
         }
-        $params['request']['signature'] = self::generate($dto, $params);
+        $params['request']['signature'] = self::generate($dto, $params['request']);
 
         return $params;
     }

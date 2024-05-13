@@ -17,4 +17,5 @@ parameters:
         - '#Unsafe usage of new static#'
         - '#Method .*\\PortmoneConnector::.* should return .* but returns mixed.#'
         - '#.*array_filter expects.*strlen.*#'
+        - '#.*method Dots\\Data\\BaseObject\:\:fromArray\(\) expects array, mixed given.*#'
 
