@@ -7,11 +7,12 @@
 
 namespace Dots\Portmone\App\Client\Responses\Payments;
 
-use Dots\Data\DTO;
 use Dots\Portmone\App\Client\Responses\PortmoneResponseDTO;
 
 class ReversePaymentResponseDTO extends PortmoneResponseDTO
 {
+    public const REVERSE_STATUS_SUCCESS = 'success';
+
     protected string $order_id;
 
     protected string $response_status;
@@ -23,6 +24,11 @@ class ReversePaymentResponseDTO extends PortmoneResponseDTO
     protected ?string $response_description;
 
     protected string $merchant_id;
+
+    public function isSuccess(): bool
+    {
+        return $this->getReverseStatus() === self::REVERSE_STATUS_SUCCESS;
+    }
 
     public function getOrderId(): string
     {
