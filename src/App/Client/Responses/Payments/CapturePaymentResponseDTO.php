@@ -7,22 +7,28 @@
 
 namespace Dots\Portmone\App\Client\Responses\Payments;
 
-use Dots\Data\DTO;
 use Dots\Portmone\App\Client\Responses\PortmoneResponseDTO;
 
 class CapturePaymentResponseDTO extends PortmoneResponseDTO
 {
+    public const CAPTURED_STATUS_CAPTURED = 'captured';
+
     protected string $order_id;
 
     protected string $response_status;
 
     protected ?string $response_code;
 
-    protected ?string $reverse_status;
+    protected ?string $capture_status;
 
     protected ?string $response_description;
 
     protected string $merchant_id;
+
+    public function isSuccess(): bool
+    {
+        return $this->getCaptureStatus() === self::CAPTURED_STATUS_CAPTURED;
+    }
 
     public function getOrderId(): string
     {
@@ -39,9 +45,9 @@ class CapturePaymentResponseDTO extends PortmoneResponseDTO
         return $this->response_code;
     }
 
-    public function getReverseStatus(): ?string
+    public function getCaptureStatus(): ?string
     {
-        return $this->reverse_status;
+        return $this->capture_status;
     }
 
     public function getResponseDescription(): ?string
