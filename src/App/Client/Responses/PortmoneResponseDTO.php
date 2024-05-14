@@ -14,6 +14,6 @@ abstract class PortmoneResponseDTO extends DTO
 {
     public static function fromResponse(Response $response): static
     {
-        return static::fromArray($response->json()['response'] ?? []);
+        return static::fromArray($response->json());
     }
 }

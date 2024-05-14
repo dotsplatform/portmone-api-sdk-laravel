@@ -8,42 +8,78 @@
 namespace Dots\Portmone\App\Client\Requests\Payments\DTO;
 
 use Dots\Data\DTO;
-use Dots\Portmone\App\Client\Resources\Currency;
+use Dots\Portmone\App\Client\Requests\Payments\DTO\Consts\Method;
+use Dots\Portmone\App\Client\Resources\Receivers\Receivers;
 
 class CapturePaymentRequestDTO extends DTO
 {
-    protected string $order_id;
+    public const ID = '1';
 
-    protected Currency $currency;
+    protected string $login;
 
-    protected int $amount;
+    protected string $password;
 
-    protected string $merchant_id;
+    protected string $payeeId;
+
+    protected ?string $shopOrderNumber;
+
+    protected ?string $shopbillId;
+
+    protected ?float $postauthAmount;
+
+    protected ?Receivers $distribution;
 
     public function toRequestData(): array
     {
         return [
-            'request' => $this->toArray(),
+            'method' => Method::CONFIRM_PREAUTH->value,
+            'id' => self::ID,
+            'params' => [
+                'data' => [
+                    'login' => $this->getLogin(),
+                    'password' => $this->getPassword(),
+                    'payeeId' => $this->getPostauthAmount(),
+                    'shopOrderNumber' => $this->getShopOrderNumber(),
+                    'shopbillId' => $this->getShopbillId(),
+                    'postauthAmount' => $this->getPostauthAmount(),
+                    'distribution' => $this->getDistribution()?->getAsString(),
+                ],
+            ],
         ];
     }
 
-    public function getOrderId(): string
+    public function getLogin(): string
     {
-        return $this->order_id;
+        return $this->login;
     }
 
-    public function getCurrency(): Currency
+    public function getPassword(): string
     {
-        return $this->currency;
+        return $this->password;
     }
 
-    public function getMerchantId(): string
+    public function getPayeeId(): string
     {
-        return $this->merchant_id;
+        return $this->payeeId;
     }
 
-    public function getAmount(): int
+    public function getShopOrderNumber(): ?string
     {
-        return $this->amount;
+        return $this->shopOrderNumber;
+    }
+
+    public function getShopbillId(): ?string
+    {
+        return $this->shopbillId;
+    }
+
+    public function getPostauthAmount(): ?float
+    {
+        return $this->postauthAmount;
+    }
+
+    public function getDistribution(): ?Receivers
+    {
+        return $this->distribution;
     }
 }

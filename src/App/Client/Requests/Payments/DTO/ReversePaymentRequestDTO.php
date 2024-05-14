@@ -8,42 +8,56 @@
 namespace Dots\Portmone\App\Client\Requests\Payments\DTO;
 
 use Dots\Data\DTO;
-use Dots\Portmone\App\Client\Resources\Currency;
+use Dots\Portmone\App\Client\Requests\Payments\DTO\Consts\Action;
+use Dots\Portmone\App\Client\Requests\Payments\DTO\Consts\Method;
 
 class ReversePaymentRequestDTO extends DTO
 {
-    protected string $order_id;
+    protected string $login;
 
-    protected Currency $currency;
+    protected string $password;
 
-    protected string $merchant_id;
+    protected string $shop_bill_id;
 
-    protected int $amount;
+    protected ?string $encoding;
+
+    protected ?string $lang;
 
     public function toRequestData(): array
     {
         return [
-            'request' => $this->toArray(),
+            'method' => Method::PREAUTH->value,
+            'action' => Action::REJECT->value,
+            'login' => $this->getLogin(),
+            'password' => $this->getPassword(),
+            'shop_bill_id' => $this->getShopBillId(),
+            'encoding' => $this->getEncoding(),
+            'lang' => $this->getLang(),
         ];
     }
 
-    public function getOrderId(): string
+    public function getLogin(): string
     {
-        return $this->order_id;
+        return $this->login;
     }
 
-    public function getCurrency(): Currency
+    public function getPassword(): string
     {
-        return $this->currency;
+        return $this->password;
     }
 
-    public function getMerchantId(): string
+    public function getShopBillId(): string
     {
-        return $this->merchant_id;
+        return $this->shop_bill_id;
     }
 
-    public function getAmount(): int
+    public function getEncoding(): ?string
     {
-        return $this->amount;
+        return $this->encoding;
+    }
+
+    public function getLang(): ?string
+    {
+        return $this->lang;
     }
 }

@@ -11,52 +11,29 @@ use Dots\Portmone\App\Client\Responses\PortmoneResponseDTO;
 
 class CapturePaymentResponseDTO extends PortmoneResponseDTO
 {
-    public const CAPTURED_STATUS_CAPTURED = 'captured';
+    protected ?string $shop_bill_id;
 
-    protected string $order_id;
+    protected ?string $shop_order_number;
 
-    protected string $response_status;
+    protected ?string $description;
 
-    protected ?string $response_code;
+    protected ?string $bill_date;
 
-    protected ?string $capture_status;
+    protected ?string $pay_date;
 
-    protected ?string $response_description;
+    protected ?string $pay_order_date;
 
-    protected string $merchant_id;
+    protected ?string $bill_amount;
 
-    public function isSuccess(): bool
-    {
-        return $this->getCaptureStatus() === self::CAPTURED_STATUS_CAPTURED;
-    }
+    protected ?string $auth_code;
 
-    public function getOrderId(): string
-    {
-        return $this->order_id;
-    }
+    protected ?string $status;
 
-    public function getResponseStatus(): string
-    {
-        return $this->response_status;
-    }
+    protected ?string $attribute1;
 
-    public function getResponseCode(): ?string
-    {
-        return $this->response_code;
-    }
+    protected ?string $attribute2;
 
-    public function getCaptureStatus(): ?string
-    {
-        return $this->capture_status;
-    }
+    protected ?string $error_code;
 
-    public function getResponseDescription(): ?string
-    {
-        return $this->response_description;
-    }
-
-    public function getMerchantId(): string
-    {
-        return $this->merchant_id;
-    }
+    protected ?string $error_message;
 }

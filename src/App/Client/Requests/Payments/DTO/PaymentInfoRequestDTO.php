@@ -8,35 +8,86 @@
 namespace Dots\Portmone\App\Client\Requests\Payments\DTO;
 
 use Dots\Data\DTO;
-use Dots\Portmone\App\Client\Resources\Currency;
+use Dots\Portmone\App\Client\Requests\Payments\DTO\Consts\Method;
+use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 
 class PaymentInfoRequestDTO extends DTO
 {
-    protected string $order_id;
+    public const ID = '1';
 
-    protected string $merchant_id;
+    protected string $login;
 
-    protected string $order_desc;
+    protected string $password;
+
+    protected string $payeeId;
+
+    protected ?string $shopOrderNumber;
+
+    protected ?string $shopbillId;
+
+    protected ?PaymentStatus $status;
+
+    protected ?string $startDate;
+
+    protected ?string $endDate;
 
     public function toRequestData(): array
     {
         return [
-            'request' => $this->toArray(),
+            'method' => Method::RESULT->value,
+            'id' => self::ID,
+            'request' => [
+                'data' => [
+                    'login' => $this->getLogin(),
+                    'password' => $this->getPassword(),
+                    'payeeId' => $this->getPayeeId(),
+                    'shopOrderNumber' => $this->getShopOrderNumber(),
+                    'shopbillId' => $this->getShopbillId(),
+                    'status' => $this->getStatus()?->value,
+                    'startDate' => $this->getStartDate(),
+                    'endDate' => $this->getEndDate(),
+                ],
+            ],
         ];
     }
 
-    public function getOrderId(): string
+    public function getLogin(): string
     {
-        return $this->order_id;
+        return $this->login;
     }
 
-    public function getMerchantId(): string
+    public function getPassword(): string
     {
-        return $this->merchant_id;
+        return $this->password;
     }
 
-    public function getOrderDesc(): string
+    public function getPayeeId(): string
     {
-        return $this->order_desc;
+        return $this->payeeId;
+    }
+
+    public function getShopOrderNumber(): ?string
+    {
+        return $this->shopOrderNumber;
+    }
+
+    public function getShopbillId(): ?string
+    {
+        return $this->shopbillId;
+    }
+
+    public function getStatus(): ?PaymentStatus
+    {
+        return $this->status;
+    }
+
+    public function getStartDate(): ?string
+    {
+        return $this->startDate;
+    }
+
+    public function getEndDate(): ?string
+    {
+        return $this->endDate;
     }
 }

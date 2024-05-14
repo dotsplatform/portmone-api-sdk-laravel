@@ -11,52 +11,39 @@ use Dots\Portmone\App\Client\Responses\PortmoneResponseDTO;
 
 class ReversePaymentResponseDTO extends PortmoneResponseDTO
 {
-    public const REVERSE_STATUS_SUCCESS = 'success';
+    protected string $shop_bill_id;
 
-    protected string $order_id;
+    protected string $bill_number;
 
-    protected string $response_status;
+    protected string $description;
 
-    protected ?string $response_code;
+    protected float $bill_amount;
 
-    protected ?string $reverse_status;
+    protected string $status;
 
-    protected ?string $response_description;
+    protected ?string $bank_id;
 
-    protected string $merchant_id;
+    protected ?string $terminal_id;
 
-    public function isSuccess(): bool
-    {
-        return $this->getReverseStatus() === self::REVERSE_STATUS_SUCCESS;
-    }
+    protected ?string $merchant_id;
 
-    public function getOrderId(): string
-    {
-        return $this->order_id;
-    }
+    protected ?string $rrn;
 
-    public function getResponseStatus(): string
-    {
-        return $this->response_status;
-    }
+    protected ?string $auth_code;
 
-    public function getResponseCode(): ?string
-    {
-        return $this->response_code;
-    }
+    protected ?string $attribute1;
 
-    public function getReverseStatus(): ?string
-    {
-        return $this->reverse_status;
-    }
+    protected ?string $attribute2;
 
-    public function getResponseDescription(): ?string
-    {
-        return $this->response_description;
-    }
+    protected ?string $attribute3;
 
-    public function getMerchantId(): string
-    {
-        return $this->merchant_id;
-    }
+    protected ?string $attribute4;
+
+    protected ?string $attribute6;
+
+    protected ?string $commission;
+
+    protected ?string $error_code;
+
+    protected ?string $error_message;
 }

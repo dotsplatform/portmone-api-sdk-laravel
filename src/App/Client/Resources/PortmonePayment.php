@@ -8,87 +8,115 @@
 namespace Dots\Portmone\App\Client\Resources;
 
 use Dots\Data\Entity;
-use Dots\Portmone\App\Client\Resources\Consts\CaptureStatus;
-use Dots\Portmone\App\Client\Resources\Consts\OrderStatus;
+use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 
 class PortmonePayment extends Entity
 {
-    protected string $order_id;
+    protected string $description;
 
-    protected ?string $payment_id;
+    protected PaymentStatus $status;
 
-    protected string $rrn;
+    protected float $billAmount;
 
-    protected ?string $masked_card;
+    protected ?string $attribute1;
 
-    protected ?string $sender_cell_phone;
+    protected ?string $attribute2;
 
-    protected OrderStatus $order_status;
+    protected ?string $attribute3;
 
-    protected ?string $sender_account;
+    protected ?string $attribute4;
 
-    protected ?string $fee;
+    protected ?string $commission;
 
-    protected ?string $actual_amount;
+    protected ?string $bank_id;
 
-    protected ?array $transaction;
+    protected ?string $terminal_id;
 
-    protected ?string $card_bin;
+    protected ?string $merchant_id;
 
-    protected ?string $card_type;
+    protected ?string $rrn;
 
-    protected string $amount;
+    protected ?string $pay_date;
 
-    protected ?CaptureStatus $capture_status;
+    protected ?string $payee_export_date;
 
-    public function getProviderPaymentId(): string
+    protected ?string $pay_order_date;
+
+    protected ?string $chargeback;
+
+    protected ?string $payee_name;
+
+    protected ?string $payee_commission;
+
+    protected ?string $shopBillId;
+
+    protected ?string $shopOrderNumber;
+
+    protected ?string $errorCode;
+
+    protected ?string $errorMessage;
+
+    protected ?string $authCode;
+
+    protected ?string $cardMask;
+
+    protected ?string $token;
+
+    protected ?string $gateType;
+
+    public function getDescription(): string
     {
-        return $this->getPaymentId() ?: '';
+        return $this->description;
     }
 
-    public function getActualAmount(): int
+    public function getStatus(): PaymentStatus
     {
-        return (int) $this->actual_amount;
+        return $this->status;
     }
 
-    public function isFailed(): bool
+    public function getBillAmount(): float
     {
-        return $this->isExpired() || $this->isDeclined();
+        return $this->billAmount;
     }
 
-    public function isApproved(): bool
+    public function getAttribute1(): ?string
     {
-        return $this->getOrderStatus()->isApproved();
+        return $this->attribute1;
     }
 
-    public function isCaptured(): bool
+    public function getAttribute2(): ?string
     {
-        return $this->getCaptureStatus()?->isCaptured() ?? false;
+        return $this->attribute2;
     }
 
-    public function isExpired(): bool
+    public function getAttribute3(): ?string
     {
-        return $this->getOrderStatus()->isExpired();
+        return $this->attribute3;
     }
 
-    public function isDeclined(): bool
+    public function getAttribute4(): ?string
     {
-        return $this->getOrderStatus()->isDeclined();
+        return $this->attribute4;
     }
 
-    public function isProcessing(): bool
+    public function getCommission(): ?string
     {
-        return $this->getOrderStatus()->isProcessing();
+        return $this->commission;
     }
 
-    public function getOrderId(): string
+    public function getBankId(): ?string
     {
-        return $this->order_id;
+        return $this->bank_id;
     }
 
-    public function getPaymentId(): ?string
+    public function getTerminalId(): ?string
     {
-        return $this->payment_id;
+        return $this->terminal_id;
+    }
+
+    public function getMerchantId(): ?string
+    {
+        return $this->merchant_id;
     }
 
     public function getRrn(): ?string
@@ -96,62 +124,73 @@ class PortmonePayment extends Entity
         return $this->rrn;
     }
 
-    public function getMaskedCard(): ?string
+    public function getPayDate(): ?string
     {
-        return $this->masked_card;
+        return $this->pay_date;
     }
 
-    public function getSenderCellPhone(): ?string
+    public function getPayeeExportDate(): ?string
     {
-        return $this->sender_cell_phone;
+        return $this->payee_export_date;
     }
 
-    public function getOrderStatus(): OrderStatus
+    public function getPayOrderDate(): ?string
     {
-        return $this->order_status;
+        return $this->pay_order_date;
     }
 
-    public function getSenderAccount(): ?string
+    public function getChargeback(): ?string
     {
-        return $this->sender_account;
+        return $this->chargeback;
     }
 
-    public function getFee(): ?float
+    public function getPayeeName(): ?string
     {
-        $fee = $this->fee;
-        if (! $fee) {
-            return null;
-        }
-        $fee = (float) $fee;
-        if (! $fee) {
-            return null;
-        }
-
-        return $fee;
+        return $this->payee_name;
     }
 
-    public function getTransaction(): ?array
+    public function getPayeeCommission(): ?string
     {
-        return $this->transaction;
+        return $this->payee_commission;
     }
 
-    public function getCardBin(): ?string
+    public function getShopBillId(): ?string
     {
-        return $this->card_bin;
+        return $this->shopBillId;
     }
 
-    public function getCardType(): ?string
+    public function getShopOrderNumber(): ?string
     {
-        return $this->card_type;
+        return $this->shopOrderNumber;
     }
 
-    public function getAmount(): int
+    public function getErrorCode(): ?string
     {
-        return (int) $this->amount;
+        return $this->errorCode;
     }
 
-    public function getCaptureStatus(): ?CaptureStatus
+    public function getErrorMessage(): ?string
     {
-        return $this->capture_status;
+        return $this->errorMessage;
+    }
+
+    public function getAuthCode(): ?string
+    {
+        return $this->authCode;
+    }
+
+    public function getCardMask(): ?string
+    {
+        return $this->cardMask;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function getGateType(): ?string
+    {
+        return $this->gateType;
     }
 }
