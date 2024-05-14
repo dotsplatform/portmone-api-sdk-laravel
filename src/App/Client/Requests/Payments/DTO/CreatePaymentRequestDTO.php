@@ -17,6 +17,14 @@ class CreatePaymentRequestDTO extends DTO
 
     protected Order $order;
 
+    public function toRequestData(): array
+    {
+        return [
+            'bodyRequest' => json_encode($this->toArray()),
+            'typeRequest' => 'json',
+        ];
+    }
+
     public function getPayee(): Payee
     {
         return $this->payee;

@@ -14,7 +14,7 @@ use Saloon\Http\Response;
 
 class CreatePaymentRequest extends PostPortmoneRequest
 {
-    private const ENDPOINT = '/gateway';
+    private const ENDPOINT = '/gateway/'; // last / should present
 
     public function __construct(
         protected readonly CreatePaymentRequestDTO $dto,
@@ -23,7 +23,7 @@ class CreatePaymentRequest extends PostPortmoneRequest
 
     protected function defaultBody(): array
     {
-        return $this->dto->toArray();
+        return $this->dto->toRequestData();
     }
 
     public function resolveEndpoint(): string

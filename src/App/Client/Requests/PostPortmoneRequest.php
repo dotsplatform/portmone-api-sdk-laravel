@@ -9,11 +9,12 @@ namespace Dots\Portmone\App\Client\Requests;
 
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
+use Saloon\Traits\Body\HasFormBody;
 use Saloon\Traits\Body\HasJsonBody;
 
 abstract class PostPortmoneRequest extends BasePortmoneRequest implements HasBody
 {
-    use HasJsonBody;
+    use HasFormBody;
 
     protected Method $method = Method::POST;
 }
