@@ -7,7 +7,6 @@
 
 namespace Dots\Portmone\App\Client\Responses\Payments;
 
-use Dots\Data\DTO;
 use Dots\Portmone\App\Client\Responses\PortmoneResponseDTO;
 
 class CreatePaymentResponseDTO extends PortmoneResponseDTO
@@ -17,6 +16,15 @@ class CreatePaymentResponseDTO extends PortmoneResponseDTO
     protected ?string $error;
 
     protected ?string $errorMessage;
+
+    public function isSuccess(): bool
+    {
+        if (!empty($this->error)) {
+            return false;
+        }
+
+        return (bool)$this->getLinkPayment();
+    }
 
     public function getLinkPayment(): ?string
     {

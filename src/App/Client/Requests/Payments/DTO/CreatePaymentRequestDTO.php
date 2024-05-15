@@ -14,19 +14,14 @@ use Dots\Portmone\App\Client\Resources\Payee;
 
 class CreatePaymentRequestDTO extends DTO
 {
+    protected Method $method = Method::CREATE_LINK_PAYMENT;
     protected Payee $payee;
 
     protected Order $order;
 
     public function toRequestData(): array
     {
-        $data = $this->toArray();
-        $data['method'] = Method::CREATE_LINK_PAYMENT;
-
-        return [
-            'bodyRequest' => json_encode($data),
-            'typeRequest' => 'json',
-        ];
+        return $this->toArray();
     }
 
     public function getPayee(): Payee
@@ -37,5 +32,10 @@ class CreatePaymentRequestDTO extends DTO
     public function getOrder(): Order
     {
         return $this->order;
+    }
+
+    public function getMethod(): Method
+    {
+        return $this->method;
     }
 }
