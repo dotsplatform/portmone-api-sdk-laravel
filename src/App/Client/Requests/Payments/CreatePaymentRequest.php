@@ -14,7 +14,7 @@ use Saloon\Http\Response;
 
 class CreatePaymentRequest extends PostPortmoneRequest
 {
-    private const ENDPOINT = '/gateway/'; // last / should present
+    private const ENDPOINT = '/gateway/'; // last slash should present
 
     public function __construct(
         protected readonly CreatePaymentRequestDTO $dto,

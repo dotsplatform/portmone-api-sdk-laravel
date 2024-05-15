@@ -13,4 +13,5 @@ enum Method: string
 
     case PREAUTH = 'preauth';
     case RESULT = 'result';
+    case CREATE_LINK_PAYMENT = 'createLinkPayment';
 }

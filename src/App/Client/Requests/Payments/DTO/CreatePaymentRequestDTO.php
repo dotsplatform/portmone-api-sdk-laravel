@@ -8,6 +8,7 @@
 namespace Dots\Portmone\App\Client\Requests\Payments\DTO;
 
 use Dots\Data\DTO;
+use Dots\Portmone\App\Client\Requests\Payments\DTO\Consts\Method;
 use Dots\Portmone\App\Client\Resources\Order;
 use Dots\Portmone\App\Client\Resources\Payee;
 
@@ -19,8 +20,11 @@ class CreatePaymentRequestDTO extends DTO
 
     public function toRequestData(): array
     {
+        $data = $this->toArray();
+        $data['method'] = Method::CREATE_LINK_PAYMENT;
+
         return [
-            'bodyRequest' => json_encode($this->toArray()),
+            'bodyRequest' => json_encode($data),
             'typeRequest' => 'json',
         ];
     }

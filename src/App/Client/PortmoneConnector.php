@@ -43,8 +43,6 @@ class PortmoneConnector extends Connector
      */
     public function createPayment(CreatePaymentRequestDTO $dto): CreatePaymentResponseDTO
     {
-        $this->authenticateRequests();
-
         return $this->send(new CreatePaymentRequest($dto))->dto();
     }
 
@@ -53,8 +51,6 @@ class PortmoneConnector extends Connector
      */
     public function paymentStatus(PaymentInfoRequestDTO $dto): PortmonePayment
     {
-        $this->authenticateRequests();
-
         return $this->send(new PaymentInfoRequest($dto))->dto();
     }
 
@@ -63,8 +59,6 @@ class PortmoneConnector extends Connector
      */
     public function capturePayment(CapturePaymentRequestDTO $dto): CapturePaymentResponseDTO
     {
-        $this->authenticateRequests();
-
         return $this->send(new CapturePaymentRequest($dto))->dto();
     }
 
@@ -73,17 +67,7 @@ class PortmoneConnector extends Connector
      */
     public function reversePayment(ReversePaymentRequestDTO $dto): ReversePaymentResponseDTO
     {
-        $this->authenticateRequests();
-
         return $this->send(new ReversePaymentRequest($dto))->dto();
-    }
-
-    protected function defaultHeaders(): array
-    {
-        return [
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-        ];
     }
 
     public function resolveBaseUrl(): string

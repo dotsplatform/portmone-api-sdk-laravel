@@ -11,8 +11,6 @@ use Dots\Data\Entity;
 
 class Order extends Entity
 {
-    protected string $orderId;
-
     protected string $shopOrderNumber;
 
     protected string $billAmount;
@@ -30,11 +28,6 @@ class Order extends Entity
     protected Currency $billCurrency;
 
     protected ?string $expTime;
-
-    public function getOrderId(): string
-    {
-        return $this->orderId;
-    }
 
     public function getShopOrderNumber(): string
     {
