@@ -17,7 +17,7 @@ class Payee extends Entity
 
     protected string $dt;
 
-    protected string $signature;
+    protected ?string $signature;
 
     protected ?string $shopSiteId;
 
@@ -36,9 +36,14 @@ class Payee extends Entity
         return $this->dt;
     }
 
-    public function getSignature(): string
+    public function getSignature(): ?string
     {
         return $this->signature;
+    }
+
+    public function setSignature(?string $signature): void
+    {
+        $this->signature = $signature;
     }
 
     public function getShopSiteId(): ?string

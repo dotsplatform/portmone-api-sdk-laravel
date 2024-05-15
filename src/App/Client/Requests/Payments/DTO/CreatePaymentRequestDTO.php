@@ -8,6 +8,8 @@
 namespace Dots\Portmone\App\Client\Requests\Payments\DTO;
 
 use Dots\Data\DTO;
+use Dots\Portmone\App\Client\Auth\DTO\PortmoneAuthDTO;
+use Dots\Portmone\App\Client\Auth\PortmoneSignature;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\Consts\Method;
 use Dots\Portmone\App\Client\Resources\Order;
 use Dots\Portmone\App\Client\Resources\Payee;
@@ -19,8 +21,12 @@ class CreatePaymentRequestDTO extends DTO
 
     protected Order $order;
 
-    public function toRequestData(): array
+    public function toRequestData(PortmoneAuthDTO $authDTO): array
     {
+        $this->getPayee()->setSignature(
+            PortmoneSignature::generateForPaymentCreate($authDTO, $this),
+        );
+
         return $this->toArray();
     }
 

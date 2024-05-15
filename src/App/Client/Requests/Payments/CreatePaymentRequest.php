@@ -10,6 +10,7 @@ namespace Dots\Portmone\App\Client\Requests\Payments;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\CreatePaymentRequestDTO;
 use Dots\Portmone\App\Client\Requests\PostPortmoneRequest;
 use Dots\Portmone\App\Client\Responses\Payments\CreatePaymentResponseDTO;
+use Saloon\Contracts\Authenticator;
 use Saloon\Http\Response;
 
 class CreatePaymentRequest extends PostPortmoneRequest

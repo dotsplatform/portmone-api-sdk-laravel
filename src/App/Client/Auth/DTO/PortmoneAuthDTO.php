@@ -11,17 +11,31 @@ use Dots\Data\DTO;
 
 class PortmoneAuthDTO extends DTO
 {
-    protected string $merchantId;
+    protected string $login;
 
     protected string $password;
 
-    public function getMerchantId(): string
+    protected string $payeeId;
+
+    protected string $key;
+
+    public function getLogin(): string
     {
-        return $this->merchantId;
+        return $this->login;
     }
 
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function getPayeeId(): string
+    {
+        return $this->payeeId;
+    }
+
+    public function getKey(): string
+    {
+        return $this->key;
     }
 }
