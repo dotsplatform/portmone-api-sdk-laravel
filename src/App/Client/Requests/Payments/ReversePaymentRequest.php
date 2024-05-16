@@ -14,7 +14,7 @@ use Saloon\Http\Response;
 
 class ReversePaymentRequest extends PostPortmoneRequest
 {
-    private const ENDPOINT = '/r3/api/reverse/order_id';
+    private const ENDPOINT = '/gateway/'; // last slash should present
 
     public function __construct(
         protected readonly ReversePaymentRequestDTO $dto,

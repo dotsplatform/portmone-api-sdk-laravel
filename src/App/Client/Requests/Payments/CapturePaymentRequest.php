@@ -15,7 +15,7 @@ use Saloon\Http\Response;
 
 class CapturePaymentRequest extends PostPortmoneRequest
 {
-    private const ENDPOINT = '/r3/api/capture/order_id';
+    private const ENDPOINT = '/gateway/'; // last slash should present
 
     public function __construct(
         protected readonly CapturePaymentRequestDTO $dto,
