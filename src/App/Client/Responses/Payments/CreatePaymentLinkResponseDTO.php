@@ -9,7 +9,7 @@ namespace Dots\Portmone\App\Client\Responses\Payments;
 
 use Dots\Portmone\App\Client\Responses\PortmoneResponseDTO;
 
-class CreatePaymentResponseDTO extends PortmoneResponseDTO
+class CreatePaymentLinkResponseDTO extends PortmoneResponseDTO
 {
     protected ?string $linkPayment;
 

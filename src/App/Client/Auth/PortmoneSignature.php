@@ -8,13 +8,13 @@
 namespace Dots\Portmone\App\Client\Auth;
 
 use Dots\Portmone\App\Client\Auth\DTO\PortmoneAuthDTO;
-use Dots\Portmone\App\Client\Requests\Payments\DTO\CreatePaymentRequestDTO;
+use Dots\Portmone\App\Client\Requests\Payments\DTO\CreatePaymentLinkRequestDTO;
 
 class PortmoneSignature
 {
     public static function generateForPaymentCreate(
         PortmoneAuthDTO $authDTO,
-        CreatePaymentRequestDTO $dto,
+        CreatePaymentLinkRequestDTO $dto,
     ): string {
         $shopOrderNumber = $dto->getOrder()->getShopOrderNumber();
         $billAmount = $dto->getOrder()->getBillAmount();

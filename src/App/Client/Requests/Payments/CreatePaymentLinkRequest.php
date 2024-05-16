@@ -8,17 +8,17 @@
 namespace Dots\Portmone\App\Client\Requests\Payments;
 
 use Dots\Portmone\App\Client\Auth\DTO\PortmoneAuthDTO;
-use Dots\Portmone\App\Client\Requests\Payments\DTO\CreatePaymentRequestDTO;
+use Dots\Portmone\App\Client\Requests\Payments\DTO\CreatePaymentLinkRequestDTO;
 use Dots\Portmone\App\Client\Requests\PostPortmoneRequest;
-use Dots\Portmone\App\Client\Responses\Payments\CreatePaymentResponseDTO;
+use Dots\Portmone\App\Client\Responses\Payments\CreatePaymentLinkResponseDTO;
 use Saloon\Http\Response;
 
-class CreatePaymentRequest extends PostPortmoneRequest
+class CreatePaymentLinkRequest extends PostPortmoneRequest
 {
     private const ENDPOINT = '/gateway/'; // last slash should present
 
     public function __construct(
-        protected readonly CreatePaymentRequestDTO $dto,
+        protected readonly CreatePaymentLinkRequestDTO $dto,
         private readonly PortmoneAuthDTO $authDTO,
     ) {
     }
@@ -33,8 +33,8 @@ class CreatePaymentRequest extends PostPortmoneRequest
         return self::ENDPOINT;
     }
 
-    public function createDtoFromResponse(Response $response): CreatePaymentResponseDTO
+    public function createDtoFromResponse(Response $response): CreatePaymentLinkResponseDTO
     {
-        return CreatePaymentResponseDTO::fromResponse($response);
+        return CreatePaymentLinkResponseDTO::fromResponse($response);
     }
 }
