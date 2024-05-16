@@ -16,23 +16,21 @@ class ReversePaymentRequestDTO extends DTO
     protected string $login;
 
     protected string $password;
-
-    protected string $shop_bill_id;
-
-    protected ?string $encoding;
-
-    protected ?string $lang;
+    protected string $payeeId;
+    protected ?string $shopOrderNumber;
 
     public function toRequestData(): array
     {
         return [
             'method' => Method::PREAUTH->value,
-            'action' => Action::REJECT->value,
-            'login' => $this->getLogin(),
-            'password' => $this->getPassword(),
-            'shop_bill_id' => $this->getShopBillId(),
-            'encoding' => $this->getEncoding(),
-            'lang' => $this->getLang(),
+            'params' => [
+                'data' => [
+                    'login' => $this->getLogin(),
+                    'password' => $this->getPassword(),
+                    'payeeId' => $this->getPayeeId(),
+                    'shopOrderNumber' => $this->getShopOrderNumber(),
+                ],
+            ],
         ];
     }
 
@@ -46,18 +44,13 @@ class ReversePaymentRequestDTO extends DTO
         return $this->password;
     }
 
-    public function getShopBillId(): string
+    public function getPayeeId(): string
     {
-        return $this->shop_bill_id;
+        return $this->payeeId;
     }
 
-    public function getEncoding(): ?string
+    public function getShopOrderNumber(): ?string
     {
-        return $this->encoding;
-    }
-
-    public function getLang(): ?string
-    {
-        return $this->lang;
+        return $this->shopOrderNumber;
     }
 }
