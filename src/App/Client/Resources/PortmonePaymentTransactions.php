@@ -32,8 +32,6 @@ class PortmonePaymentTransactions extends Collection implements FromArrayable
 
     public function getLastActualTransaction(): PortmonePaymentTransaction
     {
-        return $this->sortByPayDate()->firstOrFail(
-            fn (PortmonePaymentTransaction $transaction) => $transaction->isPayed(),
-        );
+        return $this->sortByPayDate()->firstOrFail();
     }
 }
