@@ -8,6 +8,8 @@
 namespace Dots\Portmone\App\Client\Resources;
 
 use Dots\Data\Entity;
+use Dots\Portmone\App\Client\Resources\Consts\Currency;
+use Dots\Portmone\App\Client\Resources\Consts\Preauth;
 
 class Order extends Entity
 {

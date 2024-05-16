@@ -19,11 +19,11 @@ class CreatePaymentResponseDTO extends PortmoneResponseDTO
 
     public function isSuccess(): bool
     {
-        if (!empty($this->error)) {
+        if (! empty($this->error)) {
             return false;
         }
 
-        return (bool)$this->getLinkPayment();
+        return (bool) $this->getLinkPayment();
     }
 
     public function getLinkPayment(): ?string

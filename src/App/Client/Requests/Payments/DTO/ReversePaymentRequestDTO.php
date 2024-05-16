@@ -8,7 +8,6 @@
 namespace Dots\Portmone\App\Client\Requests\Payments\DTO;
 
 use Dots\Data\DTO;
-use Dots\Portmone\App\Client\Requests\Payments\DTO\Consts\Action;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\Consts\Method;
 
 class ReversePaymentRequestDTO extends DTO
@@ -16,7 +15,9 @@ class ReversePaymentRequestDTO extends DTO
     protected string $login;
 
     protected string $password;
+
     protected string $payeeId;
+
     protected ?string $shopOrderNumber;
 
     public function toRequestData(): array

@@ -18,7 +18,7 @@ use Dots\Portmone\App\Client\Requests\Payments\DTO\PaymentInfoRequestDTO;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\ReversePaymentRequestDTO;
 use Dots\Portmone\App\Client\Requests\Payments\PaymentInfoRequest;
 use Dots\Portmone\App\Client\Requests\Payments\ReversePaymentRequest;
-use Dots\Portmone\App\Client\Resources\PortmonePayment;
+use Dots\Portmone\App\Client\Resources\PortmonePaymentTransaction;
 use Dots\Portmone\App\Client\Responses\ErrorResponseDTO;
 use Dots\Portmone\App\Client\Responses\Payments\CapturePaymentResponseDTO;
 use Dots\Portmone\App\Client\Responses\Payments\CreatePaymentResponseDTO;
@@ -41,7 +41,7 @@ class PortmoneConnector extends Connector
     /**
      * @throws PortmoneException
      */
-    public function createPayment(CreatePaymentRequestDTO $dto): CreatePaymentResponseDTO
+    public function createPaymentLink(CreatePaymentRequestDTO $dto): CreatePaymentResponseDTO
     {
         return $this->send(new CreatePaymentRequest($dto, $this->authDto))->dto();
     }
@@ -49,7 +49,7 @@ class PortmoneConnector extends Connector
     /**
      * @throws PortmoneException
      */
-    public function paymentInfo(PaymentInfoRequestDTO $dto): PortmonePayment
+    public function paymentInfo(PaymentInfoRequestDTO $dto): PortmonePaymentTransaction
     {
         return $this->send(new PaymentInfoRequest($dto))->dto();
     }
@@ -78,11 +78,6 @@ class PortmoneConnector extends Connector
         }
 
         return $host;
-    }
-
-    private function authenticateRequests(): void
-    {
-        $this->authenticate(PortmoneAuthenticator::fromAuthDTO($this->authDto));
     }
 
     public function getRequestException(Response $response, ?Throwable $senderException): ?Throwable

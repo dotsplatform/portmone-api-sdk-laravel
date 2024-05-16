@@ -10,7 +10,7 @@ namespace Dots\Portmone\App\Client\Resources;
 use Dots\Data\Entity;
 use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 
-class PortmonePayment extends Entity
+class PortmonePaymentTransaction extends Entity
 {
     protected ?string $description;
 
@@ -63,6 +63,26 @@ class PortmonePayment extends Entity
     protected ?string $token;
 
     protected ?string $gateType;
+
+    public function isRejected(): bool
+    {
+        return $this->status->isRejected();
+    }
+
+    public function isPayed(): bool
+    {
+        return $this->status->isPayed();
+    }
+
+    public function isPreauth(): bool
+    {
+        return $this->status->isPreauth();
+    }
+
+    public function isCreated(): bool
+    {
+        return $this->status->isCreated();
+    }
 
     public function getDescription(): ?string
     {

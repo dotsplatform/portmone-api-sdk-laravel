@@ -17,6 +17,7 @@ use Dots\Portmone\App\Client\Resources\Payee;
 class CreatePaymentRequestDTO extends DTO
 {
     protected Method $method = Method::CREATE_LINK_PAYMENT;
+
     protected Payee $payee;
 
     protected Order $order;

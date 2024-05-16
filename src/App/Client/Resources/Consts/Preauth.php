@@ -5,7 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace Dots\Portmone\App\Client\Resources;
+namespace Dots\Portmone\App\Client\Resources\Consts;
 
 enum Preauth: string
 {

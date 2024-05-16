@@ -19,8 +19,9 @@ class PortmoneSignature
         $shopOrderNumber = $dto->getOrder()->getShopOrderNumber();
         $billAmount = $dto->getOrder()->getBillAmount();
         $dt = $dto->getPayee()->getDt();
-        $strToSignature = $authDTO->getPayeeId() . $dt . bin2hex($shopOrderNumber) . $billAmount;
-        $strToSignature = strtoupper($strToSignature) . strtoupper(bin2hex($authDTO->getLogin()));
+        $strToSignature = $authDTO->getPayeeId().$dt.bin2hex($shopOrderNumber).$billAmount;
+        $strToSignature = strtoupper($strToSignature).strtoupper(bin2hex($authDTO->getLogin()));
+
         return strtoupper(hash_hmac('sha256', $strToSignature, $authDTO->getKey()));
     }
 }
