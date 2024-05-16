@@ -9,8 +9,6 @@ namespace Dots\Portmone\App\Client\Requests\Payments;
 
 use Dots\Portmone\App\Client\Requests\Payments\DTO\ReversePaymentRequestDTO;
 use Dots\Portmone\App\Client\Requests\PostPortmoneRequest;
-use Dots\Portmone\App\Client\Resources\PortmonePaymentTransaction;
-use Dots\Portmone\App\Client\Resources\PortmonePaymentTransactions;
 use Dots\Portmone\App\Client\Responses\Payments\ReversePaymentResponseDTO;
 use Saloon\Http\Response;
 
@@ -33,8 +31,8 @@ class ReversePaymentRequest extends PostPortmoneRequest
         return self::ENDPOINT;
     }
 
-    public function createDtoFromResponse(Response $response): PortmonePaymentTransaction
+    public function createDtoFromResponse(Response $response): ReversePaymentResponseDTO
     {
-        return PortmonePaymentTransactions::fromArray($response->json())->getLastActualTransaction();
+        return ReversePaymentResponseDTO::fromResponse($response);
     }
 }
