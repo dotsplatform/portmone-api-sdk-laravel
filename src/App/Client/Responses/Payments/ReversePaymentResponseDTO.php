@@ -7,9 +7,8 @@
 
 namespace Dots\Portmone\App\Client\Responses\Payments;
 
+use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 use Dots\Portmone\App\Client\Responses\PortmoneResponseDTO;
-use RuntimeException;
-use Saloon\Http\Response;
 
 class ReversePaymentResponseDTO extends PortmoneResponseDTO
 {
@@ -21,7 +20,7 @@ class ReversePaymentResponseDTO extends PortmoneResponseDTO
 
     protected float $bill_amount;
 
-    protected string $status;
+    protected PaymentStatus $status;
 
     protected ?string $bank_id;
 
@@ -49,6 +48,11 @@ class ReversePaymentResponseDTO extends PortmoneResponseDTO
 
     protected ?string $error_message;
 
+    public function isRejected(): bool
+    {
+        return $this->status->isRejected();
+    }
+
     public function getShopBillId(): string
     {
         return $this->shop_bill_id;
@@ -69,7 +73,7 @@ class ReversePaymentResponseDTO extends PortmoneResponseDTO
         return $this->bill_amount;
     }
 
-    public function getStatus(): string
+    public function getStatus(): PaymentStatus
     {
         return $this->status;
     }
