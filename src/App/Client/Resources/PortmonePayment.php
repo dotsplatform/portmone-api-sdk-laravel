@@ -12,7 +12,7 @@ use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 
 class PortmonePayment extends Entity
 {
-    protected string $description;
+    protected ?string $description;
 
     protected PaymentStatus $status;
 
@@ -64,7 +64,7 @@ class PortmonePayment extends Entity
 
     protected ?string $gateType;
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }

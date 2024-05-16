@@ -33,6 +33,6 @@ class PaymentInfoRequest extends PostPortmoneRequest
 
     public function createDtoFromResponse(Response $response): PortmonePayment
     {
-        return PortmonePayment::fromArray($response->json()['response'] ?? []);
+        return PortmonePayment::fromArray($response->json()[0]);
     }
 }

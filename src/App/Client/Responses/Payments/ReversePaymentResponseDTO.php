@@ -49,19 +49,6 @@ class ReversePaymentResponseDTO extends PortmoneResponseDTO
 
     protected ?string $error_message;
 
-    public static function fromResponse(Response $response): static
-    {
-        $data = $response->json();
-        if (!is_array($data)) {
-            throw new RuntimeException('Invalid response data');
-        }
-        if (!isset($data[0])) {
-            throw new RuntimeException('Invalid response data');
-        }
-
-        return static::fromArray($data[0]);
-    }
-
     public function getShopBillId(): string
     {
         return $this->shop_bill_id;
