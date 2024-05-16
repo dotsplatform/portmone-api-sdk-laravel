@@ -7,6 +7,7 @@
 
 namespace Dots\Portmone\App\Client\Responses\Payments;
 
+use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 use Dots\Portmone\App\Client\Responses\PortmoneResponseDTO;
 
 class CapturePaymentResponseDTO extends PortmoneResponseDTO
@@ -23,11 +24,11 @@ class CapturePaymentResponseDTO extends PortmoneResponseDTO
 
     protected ?string $pay_order_date;
 
-    protected ?string $bill_amount;
+    protected float $bill_amount;
 
     protected ?string $auth_code;
 
-    protected ?string $status;
+    protected PaymentStatus $status;
 
     protected ?string $attribute1;
 
@@ -36,4 +37,74 @@ class CapturePaymentResponseDTO extends PortmoneResponseDTO
     protected ?string $error_code;
 
     protected ?string $error_message;
+
+    public function isPayed(): bool
+    {
+        return $this->getStatus()->isPayed();
+    }
+
+    public function getShopBillId(): ?string
+    {
+        return $this->shop_bill_id;
+    }
+
+    public function getShopOrderNumber(): ?string
+    {
+        return $this->shop_order_number;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function getBillDate(): ?string
+    {
+        return $this->bill_date;
+    }
+
+    public function getPayDate(): ?string
+    {
+        return $this->pay_date;
+    }
+
+    public function getPayOrderDate(): ?string
+    {
+        return $this->pay_order_date;
+    }
+
+    public function getBillAmount(): float
+    {
+        return $this->bill_amount;
+    }
+
+    public function getAuthCode(): ?string
+    {
+        return $this->auth_code;
+    }
+
+    public function getStatus(): PaymentStatus
+    {
+        return $this->status;
+    }
+
+    public function getAttribute1(): ?string
+    {
+        return $this->attribute1;
+    }
+
+    public function getAttribute2(): ?string
+    {
+        return $this->attribute2;
+    }
+
+    public function getErrorCode(): ?string
+    {
+        return $this->error_code;
+    }
+
+    public function getErrorMessage(): ?string
+    {
+        return $this->error_message;
+    }
 }

@@ -34,8 +34,8 @@ class CapturePaymentRequest extends PostPortmoneRequest
         return self::ENDPOINT;
     }
 
-    public function createDtoFromResponse(Response $response): PortmonePaymentTransaction
+    public function createDtoFromResponse(Response $response): CapturePaymentResponseDTO
     {
-        return PortmonePaymentTransaction::fromArray($response->json());
+        return CapturePaymentResponseDTO::fromResponse($response);
     }
 }

@@ -56,7 +56,7 @@ class PortmoneConnector extends Connector
     /**
      * @throws PortmoneException
      */
-    public function capturePayment(CapturePaymentRequestDTO $dto): PortmonePaymentTransaction
+    public function capturePayment(CapturePaymentRequestDTO $dto): CapturePaymentResponseDTO
     {
         return $this->send(new CapturePaymentRequest($dto))->dto();
     }
