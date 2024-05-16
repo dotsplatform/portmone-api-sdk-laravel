@@ -7,6 +7,7 @@
 
 namespace Dots\Portmone\App\Client\Requests\Payments;
 
+use Dots\Portmone\App\Client\Auth\DTO\PortmoneAuthDTO;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\CreatePaymentRequestDTO;
 use Dots\Portmone\App\Client\Requests\PostPortmoneRequest;
 use Dots\Portmone\App\Client\Responses\Payments\CreatePaymentResponseDTO;
@@ -19,12 +20,13 @@ class CreatePaymentRequest extends PostPortmoneRequest
 
     public function __construct(
         protected readonly CreatePaymentRequestDTO $dto,
+        private readonly PortmoneAuthDTO $authDTO,
     ) {
     }
 
     protected function defaultBody(): array
     {
-        return $this->dto->toRequestData();
+        return $this->dto->toRequestData($this->authDTO);
     }
 
     public function resolveEndpoint(): string
