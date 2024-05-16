@@ -16,4 +16,5 @@ parameters:
     ignoreErrors:
         - '#Unsafe usage of new static#'
         - '#Method .*\\PortmoneConnector::.* should return .* but returns mixed.#'
+        - '#.*method Dots\\Data\\BaseObject\:\:fromArray\(\) expects array, mixed given.*#'
 

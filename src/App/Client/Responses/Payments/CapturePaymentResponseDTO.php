@@ -9,6 +9,7 @@ namespace Dots\Portmone\App\Client\Responses\Payments;
 
 use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 use Dots\Portmone\App\Client\Responses\PortmoneResponseDTO;
+use Saloon\Http\Response;
 
 class CapturePaymentResponseDTO extends PortmoneResponseDTO
 {
@@ -37,6 +38,15 @@ class CapturePaymentResponseDTO extends PortmoneResponseDTO
     protected ?string $error_code;
 
     protected ?string $error_message;
+
+    public static function fromResponse(Response $response): static
+    {
+        if (! empty($response->json()[0])) {
+            return static::fromArray($response->json()[0]);
+        }
+
+        return parent::fromResponse($response);
+    }
 
     public function isPayed(): bool
     {
