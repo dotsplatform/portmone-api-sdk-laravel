@@ -12,11 +12,11 @@ use Dots\Portmone\App\Client\Responses\PortmoneResponseDTO;
 
 class ReversePaymentResponseDTO extends PortmoneResponseDTO
 {
-    protected string $shop_bill_id;
+    protected ?string $shop_bill_id;
 
-    protected string $bill_number;
+    protected ?string $bill_number;
 
-    protected string $description;
+    protected ?string $description;
 
     protected float $bill_amount;
 
@@ -53,17 +53,17 @@ class ReversePaymentResponseDTO extends PortmoneResponseDTO
         return $this->status->isRejected();
     }
 
-    public function getShopBillId(): string
+    public function getShopBillId(): ?string
     {
         return $this->shop_bill_id;
     }
 
-    public function getBillNumber(): string
+    public function getBillNumber(): ?string
     {
         return $this->bill_number;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
