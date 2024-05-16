@@ -35,4 +35,14 @@ class PaymentInfoRequest extends PostPortmoneRequest
     {
         return PortmonePayment::fromArray($response->json()[0]);
     }
+
+    public function shouldThrowRequestException(Response $response): bool
+    {
+        $data = $response->json();
+        if (!is_array($data)) {
+            return true;
+        }
+
+        return empty($data[0]);
+    }
 }
