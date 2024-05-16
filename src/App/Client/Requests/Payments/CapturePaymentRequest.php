@@ -36,6 +36,6 @@ class CapturePaymentRequest extends PostPortmoneRequest
 
     public function createDtoFromResponse(Response $response): PortmonePaymentTransaction
     {
-        return PortmonePaymentTransactions::fromArray($response->json())->getLastActualTransaction();
+        return PortmonePaymentTransaction::fromArray($response->json());
     }
 }
