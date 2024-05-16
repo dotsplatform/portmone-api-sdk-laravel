@@ -49,7 +49,7 @@ class PortmoneConnector extends Connector
     /**
      * @throws PortmoneException
      */
-    public function paymentStatus(PaymentInfoRequestDTO $dto): PortmonePayment
+    public function paymentInfo(PaymentInfoRequestDTO $dto): PortmonePayment
     {
         return $this->send(new PaymentInfoRequest($dto))->dto();
     }
@@ -96,6 +96,6 @@ class PortmoneConnector extends Connector
     {
         $errorResponse = ErrorResponseDTO::fromResponse($response);
 
-        return ! $errorResponse->isResponseStatusSuccess();
+        return ! $errorResponse->isResponseSuccess();
     }
 }

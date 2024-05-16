@@ -14,7 +14,7 @@ use Saloon\Http\Response;
 
 class PaymentInfoRequest extends PostPortmoneRequest
 {
-    private const ENDPOINT = '/r3/api/status/order_id';
+    private const ENDPOINT = '/gateway/';
 
     public function __construct(
         protected readonly PaymentInfoRequestDTO $dto,
