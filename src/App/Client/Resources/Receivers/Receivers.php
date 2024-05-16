@@ -17,11 +17,13 @@ class Receivers extends Collection implements FromArrayable
 {
     public static function fromArray(array $data): static
     {
-        return new static(array_map(fn ($item) => Receiver::fromArray($item), $data));
+        return new static(array_map(fn($item) => Receiver::fromArray($item), $data));
     }
 
     public function getAsString(): string
     {
-        return $this->map(fn (Receiver $receiver) => $receiver->getAsString())->implode(';');
+        $value = $this->map(fn(Receiver $receiver) => $receiver->getAsString())->implode(';');
+        $value .= ';';
+        return $value;
     }
 }

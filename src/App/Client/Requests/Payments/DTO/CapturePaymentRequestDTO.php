@@ -38,7 +38,7 @@ class CapturePaymentRequestDTO extends DTO
                 'data' => [
                     'login' => $this->getLogin(),
                     'password' => $this->getPassword(),
-                    'payeeId' => $this->getPostauthAmount(),
+                    'payeeId' => $this->getPayeeId(),
                     'shopOrderNumber' => $this->getShopOrderNumber(),
                     'shopbillId' => $this->getShopbillId(),
                     'postauthAmount' => $this->getPostauthAmount(),
