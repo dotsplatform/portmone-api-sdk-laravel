@@ -9,6 +9,7 @@ namespace Dots\Portmone\App\Client\Requests\Payments;
 
 use Dots\Portmone\App\Client\Requests\Payments\DTO\CapturePaymentRequestDTO;
 use Dots\Portmone\App\Client\Requests\PostPortmoneRequest;
+use Dots\Portmone\App\Client\Resources\PortmonePaymentTransaction;
 use Dots\Portmone\App\Client\Responses\Payments\CapturePaymentResponseDTO;
 use Saloon\Contracts\Body\BodyRepository;
 use Saloon\Http\Response;
@@ -32,8 +33,8 @@ class CapturePaymentRequest extends PostPortmoneRequest
         return self::ENDPOINT;
     }
 
-    public function createDtoFromResponse(Response $response): CapturePaymentResponseDTO
+    public function createDtoFromResponse(Response $response): PortmonePaymentTransaction
     {
-        return CapturePaymentResponseDTO::fromResponse($response);
+        return PortmonePaymentTransaction::fromArray($response->json());
     }
 }
