@@ -43,7 +43,7 @@ class PortmoneConnector extends Connector
      */
     public function createPayment(CreatePaymentRequestDTO $dto): CreatePaymentResponseDTO
     {
-        return $this->send(new CreatePaymentRequest($dto))->dto();
+        return $this->send(new CreatePaymentRequest($dto, $this->authDto))->dto();
     }
 
     /**
