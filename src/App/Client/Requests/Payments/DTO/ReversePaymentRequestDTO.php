@@ -22,7 +22,7 @@ class ReversePaymentRequestDTO extends DTO
     public function toRequestData(): array
     {
         return [
-            'method' => Method::PREAUTH->value,
+            'method' => Method::REJECT_PREAUTH->value,
             'params' => [
                 'data' => [
                     'login' => $this->getLogin(),

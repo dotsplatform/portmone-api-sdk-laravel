@@ -11,7 +11,7 @@ enum Method: string
 {
     case CONFIRM_PREAUTH = 'confirmPreauth';
 
-    case PREAUTH = 'preauth';
+    case REJECT_PREAUTH = 'rejectPreauth';
     case RESULT = 'result';
     case CREATE_LINK_PAYMENT = 'createLinkPayment';
 }
