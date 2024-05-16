@@ -36,7 +36,7 @@ class PaymentInfoRequestDTO extends DTO
         return [
             'method' => Method::RESULT->value,
             'id' => self::ID,
-            'request' => [
+            'params' => [
                 'data' => [
                     'login' => $this->getLogin(),
                     'password' => $this->getPassword(),
