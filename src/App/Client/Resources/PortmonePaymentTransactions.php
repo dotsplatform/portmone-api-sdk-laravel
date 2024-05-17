@@ -23,15 +23,15 @@ class PortmonePaymentTransactions extends Collection implements FromArrayable
         ));
     }
 
-    public function sortByPayDate(): static
+    public function sortDescByPayDate(): static
     {
-        return $this->sortBy(
+        return $this->sortByDesc(
             fn (PortmonePaymentTransaction $transaction) => $transaction->getPayDate(),
         );
     }
 
     public function getLastActualTransaction(): PortmonePaymentTransaction
     {
-        return $this->sortByPayDate()->firstOrFail();
+        return $this->sortDescByPayDate()->firstOrFail();
     }
 }

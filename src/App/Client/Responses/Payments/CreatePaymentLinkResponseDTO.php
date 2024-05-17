@@ -15,11 +15,11 @@ class CreatePaymentLinkResponseDTO extends PortmoneResponseDTO
 
     protected ?string $error;
 
-    protected ?string $errorMessage;
+    protected ?string $errorCode;
 
     public function isSuccess(): bool
     {
-        if (! empty($this->error)) {
+        if ($this->getError()) {
             return false;
         }
 
@@ -36,8 +36,8 @@ class CreatePaymentLinkResponseDTO extends PortmoneResponseDTO
         return $this->error;
     }
 
-    public function getErrorMessage(): ?string
+    public function getErrorCode(): ?string
     {
-        return $this->errorMessage;
+        return $this->errorCode;
     }
 }

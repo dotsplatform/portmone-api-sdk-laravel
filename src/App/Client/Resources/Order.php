@@ -15,7 +15,7 @@ class Order extends Entity
 {
     protected string $shopOrderNumber;
 
-    protected string $billAmount;
+    protected float $billAmount;
 
     protected string $successUrl;
 
@@ -36,7 +36,7 @@ class Order extends Entity
         return $this->shopOrderNumber;
     }
 
-    public function getBillAmount(): string
+    public function getBillAmount(): float
     {
         return $this->billAmount;
     }
