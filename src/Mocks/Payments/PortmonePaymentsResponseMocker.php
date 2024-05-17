@@ -51,7 +51,7 @@ class PortmonePaymentsResponseMocker
         return $dto;
     }
 
-    public static function mockSuccessVoid(array $data = []): ReversePaymentResponseDTO
+    public static function mockSuccessReverse(array $data = []): ReversePaymentResponseDTO
     {
         $dto = PortmoneResponseDemoDataGenerator::generateSuccessReversePaymentResponse($data);
         MockClient::global([
