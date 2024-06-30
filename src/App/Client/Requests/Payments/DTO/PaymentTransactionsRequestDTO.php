@@ -11,7 +11,7 @@ use Dots\Data\DTO;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\Consts\Method;
 use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 
-class PaymentInfoRequestDTO extends DTO
+class PaymentTransactionsRequestDTO extends DTO
 {
     public const ID = '1';
 

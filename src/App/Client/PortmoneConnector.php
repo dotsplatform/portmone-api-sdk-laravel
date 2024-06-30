@@ -13,11 +13,12 @@ use Dots\Portmone\App\Client\Requests\Payments\CapturePaymentRequest;
 use Dots\Portmone\App\Client\Requests\Payments\CreatePaymentLinkRequest;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\CapturePaymentRequestDTO;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\CreatePaymentLinkRequestDTO;
-use Dots\Portmone\App\Client\Requests\Payments\DTO\PaymentInfoRequestDTO;
+use Dots\Portmone\App\Client\Requests\Payments\DTO\PaymentTransactionsRequestDTO;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\ReversePaymentRequestDTO;
-use Dots\Portmone\App\Client\Requests\Payments\PaymentInfoRequest;
+use Dots\Portmone\App\Client\Requests\Payments\PaymentTransactionsRequest;
 use Dots\Portmone\App\Client\Requests\Payments\ReversePaymentRequest;
 use Dots\Portmone\App\Client\Resources\PortmonePaymentTransaction;
+use Dots\Portmone\App\Client\Resources\PortmonePaymentTransactions;
 use Dots\Portmone\App\Client\Responses\ErrorResponseDTO;
 use Dots\Portmone\App\Client\Responses\Payments\CapturePaymentResponseDTO;
 use Dots\Portmone\App\Client\Responses\Payments\CreatePaymentLinkResponseDTO;
@@ -48,9 +49,9 @@ class PortmoneConnector extends Connector
     /**
      * @throws PortmoneException
      */
-    public function paymentInfo(PaymentInfoRequestDTO $dto): PortmonePaymentTransaction
+    public function getPaymentTransactions(PaymentTransactionsRequestDTO $dto): PortmonePaymentTransactions
     {
-        return $this->send(new PaymentInfoRequest($dto))->dto();
+        return $this->send(new PaymentTransactionsRequest($dto))->dto();
     }
 
     /**

@@ -9,7 +9,7 @@ namespace Dots\Portmone\Mocks\Payments;
 
 use Dots\Portmone\App\Client\Requests\Payments\CapturePaymentRequest;
 use Dots\Portmone\App\Client\Requests\Payments\CreatePaymentLinkRequest;
-use Dots\Portmone\App\Client\Requests\Payments\PaymentInfoRequest;
+use Dots\Portmone\App\Client\Requests\Payments\PaymentTransactionsRequest;
 use Dots\Portmone\App\Client\Requests\Payments\ReversePaymentRequest;
 use Dots\Portmone\App\Client\Resources\PortmonePaymentTransactions;
 use Dots\Portmone\App\Client\Responses\Payments\CapturePaymentResponseDTO;
@@ -35,7 +35,7 @@ class PortmonePaymentsResponseMocker
     {
         $dto = PortmoneResponseDemoDataGenerator::generatePaymentTransactions($data);
         MockClient::global([
-            PaymentInfoRequest::class => MockResponse::make($dto->toArray()),
+            PaymentTransactionsRequest::class => MockResponse::make($dto->toArray()),
         ]);
 
         return $dto;
