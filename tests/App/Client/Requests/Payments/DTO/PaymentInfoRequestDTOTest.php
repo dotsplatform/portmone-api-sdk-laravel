@@ -8,7 +8,7 @@
 namespace Tests\App\Client\Requests\Payments\DTO;
 
 use Dots\Portmone\App\Client\Requests\Payments\DTO\Consts\Method;
-use Dots\Portmone\App\Client\Requests\Payments\DTO\PaymentInfoRequestDTO;
+use Dots\Portmone\App\Client\Requests\Payments\DTO\PaymentTransactionsRequestDTO;
 use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 use Tests\TestCase;
 
@@ -16,7 +16,7 @@ class PaymentInfoRequestDTOTest extends TestCase
 {
     public function testFromArrayToArray(): void
     {
-        $dto = PaymentInfoRequestDTO::fromArray([
+        $dto = PaymentTransactionsRequestDTO::fromArray([
             'login' => $this->uuid(),
             'password' => $this->uuid(),
             'payeeId' => $this->uuid(),
@@ -29,7 +29,7 @@ class PaymentInfoRequestDTOTest extends TestCase
 
         $this->assertEquals(
             $dto->toArray(),
-            PaymentInfoRequestDTO::fromArray($dto->toArray())->toArray(),
+            PaymentTransactionsRequestDTO::fromArray($dto->toArray())->toArray(),
         );
     }
 
@@ -40,7 +40,7 @@ class PaymentInfoRequestDTOTest extends TestCase
         array $data,
         array $expectedData,
     ): void {
-        $dto = PaymentInfoRequestDTO::fromArray($data);
+        $dto = PaymentTransactionsRequestDTO::fromArray($data);
         $this->assertArraysEqual($expectedData, $dto->toArray());
     }
 
@@ -95,7 +95,7 @@ class PaymentInfoRequestDTOTest extends TestCase
         array $data,
         mixed $expectedResult,
     ): void {
-        $dto = PaymentInfoRequestDTO::fromArray($data);
+        $dto = PaymentTransactionsRequestDTO::fromArray($data);
         $result = $dto->$method(...$methodData);
         if (is_array($expectedResult)) {
             $this->assertArraysEqual($expectedResult, $result);
@@ -123,7 +123,7 @@ class PaymentInfoRequestDTOTest extends TestCase
                 ],
                 'expectedResult' => [
                     'method' => Method::RESULT->value,
-                    'id' => PaymentInfoRequestDTO::ID,
+                    'id' => PaymentTransactionsRequestDTO::ID,
                     'params' => [
                         'data' => [
                             'login' => 'login',

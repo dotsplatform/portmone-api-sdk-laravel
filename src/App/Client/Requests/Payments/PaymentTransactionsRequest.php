@@ -7,18 +7,18 @@
 
 namespace Dots\Portmone\App\Client\Requests\Payments;
 
-use Dots\Portmone\App\Client\Requests\Payments\DTO\PaymentInfoRequestDTO;
+use Dots\Portmone\App\Client\Requests\Payments\DTO\PaymentTransactionsRequestDTO;
 use Dots\Portmone\App\Client\Requests\PostPortmoneRequest;
 use Dots\Portmone\App\Client\Resources\PortmonePaymentTransaction;
 use Dots\Portmone\App\Client\Resources\PortmonePaymentTransactions;
 use Saloon\Http\Response;
 
-class PaymentInfoRequest extends PostPortmoneRequest
+class PaymentTransactionsRequest extends PostPortmoneRequest
 {
     private const ENDPOINT = '/gateway/';
 
     public function __construct(
-        protected readonly PaymentInfoRequestDTO $dto,
+        protected readonly PaymentTransactionsRequestDTO $dto,
     ) {
     }
 
@@ -32,8 +32,8 @@ class PaymentInfoRequest extends PostPortmoneRequest
         return self::ENDPOINT;
     }
 
-    public function createDtoFromResponse(Response $response): PortmonePaymentTransaction
+    public function createDtoFromResponse(Response $response): PortmonePaymentTransactions
     {
-        return PortmonePaymentTransactions::fromArray($response->json())->getLastActualTransaction();
+        return PortmonePaymentTransactions::fromArray($response->json());
     }
 }

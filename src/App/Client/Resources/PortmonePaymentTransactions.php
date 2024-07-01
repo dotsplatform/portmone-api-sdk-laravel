@@ -23,15 +23,56 @@ class PortmonePaymentTransactions extends Collection implements FromArrayable
         ));
     }
 
+    public function getActualAmount(): float
+    {
+        if ($this->isPayed()) {
+            return $this->getPayedActualAmount();
+        }
+
+        return $this->getLastActualTransaction()?->getBillAmount() ?? 0;
+    }
+
+    public function getPayedActualAmount(): float
+    {
+        $amount = 0;
+        foreach ($this->all() as $transaction) {
+            if ($transaction->isPayed()) {
+                $amount += $transaction->getBillAmount();
+            }
+        }
+
+        return $amount;
+    }
+
+    public function isPayed(): bool
+    {
+        return $this->isEveryTransactionPayed();
+    }
+
+    public function isEveryTransactionPayed(): bool
+    {
+        return $this->every(fn (PortmonePaymentTransaction $transaction) => $transaction->isPayed());
+    }
+
+    public function isRejected(): bool
+    {
+        return $this->getLastActualTransaction()?->isRejected() ?? false;
+    }
+
+    public function isPreauth(): bool
+    {
+        return $this->getLastActualTransaction()?->isPreauth() ?? false;
+    }
+
+    public function getLastActualTransaction(): ?PortmonePaymentTransaction
+    {
+        return $this->sortDescByPayDate()->first();
+    }
+
     public function sortDescByPayDate(): static
     {
         return $this->sortByDesc(
             fn (PortmonePaymentTransaction $transaction) => $transaction->getPayDate(),
         );
-    }
-
-    public function getLastActualTransaction(): PortmonePaymentTransaction
-    {
-        return $this->sortDescByPayDate()->firstOrFail();
     }
 }

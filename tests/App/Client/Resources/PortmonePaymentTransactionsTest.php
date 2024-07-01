@@ -74,6 +74,108 @@ class PortmonePaymentTransactionsTest extends TestCase
                     'shopOrderNumber' => '1',
                 ],
             ],
+
+            'Test getActualAmount expects from last payment if status not payed ' => [
+                'method' => 'getActualAmount',
+                'methodData' => [],
+                'data' => [
+                    [
+                        'shopOrderNumber' => '1',
+                        'status' => PaymentStatus::PREAUTH,
+                        'billAmount' => 200,
+                        'pay_date' => '16.05.2024 15:45:33',
+                    ],
+                ],
+                'expectedResult' => 200,
+            ],
+
+            'Test getActualAmount with two payed transaction expects' => [
+                'method' => 'getActualAmount',
+                'methodData' => [],
+                'data' => [
+                    [
+                        'shopOrderNumber' => '1',
+                        'status' => PaymentStatus::PAYED,
+                        'billAmount' => 200,
+                        'pay_date' => '16.05.2024 15:45:33',
+                    ],
+                    [
+                        'shopOrderNumber' => '2',
+                        'status' => PaymentStatus::PAYED,
+                        'billAmount' => 100,
+                        'pay_date' => '16.05.2024 15:44:33',
+                    ],
+                ],
+                'expectedResult' => 300,
+            ],
+
+            'Test isPayed expects false if one not payed' => [
+                'method' => 'isPayed',
+                'methodData' => [],
+                'data' => [
+                    [
+                        'shopOrderNumber' => '1',
+                        'status' => PaymentStatus::PAYED,
+                        'billAmount' => 100,
+                        'pay_date' => '16.05.2024 15:45:33',
+                    ],
+                    [
+                        'shopOrderNumber' => '2',
+                        'status' => PaymentStatus::PREAUTH,
+                        'billAmount' => 200,
+                        'pay_date' => '16.05.2024 15:46:33',
+                    ],
+                ],
+                'expectedResult' => false,
+            ],
+
+            'Test isPayed expects true' => [
+                'method' => 'isPayed',
+                'methodData' => [],
+                'data' => [
+                    [
+                        'shopOrderNumber' => '1',
+                        'status' => PaymentStatus::PAYED,
+                        'billAmount' => 100,
+                        'pay_date' => '16.05.2024 15:45:33',
+                    ],
+                    [
+                        'shopOrderNumber' => '2',
+                        'status' => PaymentStatus::PAYED,
+                        'billAmount' => 200,
+                        'pay_date' => '16.05.2024 15:46:33',
+                    ],
+                ],
+                'expectedResult' => true,
+            ],
+
+            'Test isRejected expects true' => [
+                'method' => 'isRejected',
+                'methodData' => [],
+                'data' => [
+                    [
+                        'shopOrderNumber' => '1',
+                        'status' => PaymentStatus::REJECTED,
+                        'billAmount' => 100,
+                        'pay_date' => '16.05.2024 15:45:33',
+                    ],
+                ],
+                'expectedResult' => true,
+            ],
+
+            'Test isPreauth expects true' => [
+                'method' => 'isPreauth',
+                'methodData' => [],
+                'data' => [
+                    [
+                        'shopOrderNumber' => '1',
+                        'status' => PaymentStatus::PREAUTH,
+                        'billAmount' => 100,
+                        'pay_date' => '16.05.2024 15:45:33',
+                    ],
+                ],
+                'expectedResult' => true,
+            ],
         ];
     }
 }
