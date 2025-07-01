@@ -31,6 +31,8 @@ class Order extends Entity
 
     protected ?string $expTime;
 
+    protected ?string $attribute5;
+
     public function getShopOrderNumber(): string
     {
         return $this->shopOrderNumber;
@@ -74,5 +76,10 @@ class Order extends Entity
     public function getExpTime(): ?string
     {
         return $this->expTime;
+    }
+
+    public function getAttribute5(): ?string
+    {
+        return $this->attribute5;
     }
 }

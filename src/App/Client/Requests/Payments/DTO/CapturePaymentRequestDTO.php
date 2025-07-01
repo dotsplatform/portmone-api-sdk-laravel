@@ -29,6 +29,8 @@ class CapturePaymentRequestDTO extends DTO
 
     protected ?Receivers $distribution;
 
+    protected ?string $attribute5;
+
     public function toRequestData(): array
     {
         return [
@@ -43,6 +45,7 @@ class CapturePaymentRequestDTO extends DTO
                     'shopbillId' => $this->getShopbillId(),
                     'postauthAmount' => $this->getPostauthAmount(),
                     'distribution' => $this->getDistribution()?->getAsString(),
+                    'attribute5' => $this->getAttribute5(),
                 ],
             ],
         ];
@@ -81,5 +84,10 @@ class CapturePaymentRequestDTO extends DTO
     public function getDistribution(): ?Receivers
     {
         return $this->distribution;
+    }
+
+    public function getAttribute5(): ?string
+    {
+        return $this->attribute5;
     }
 }
