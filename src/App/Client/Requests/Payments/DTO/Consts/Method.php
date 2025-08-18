@@ -12,6 +12,10 @@ enum Method: string
     case CONFIRM_PREAUTH = 'confirmPreauth';
 
     case REJECT_PREAUTH = 'rejectPreauth';
+
     case RESULT = 'result';
+
     case CREATE_LINK_PAYMENT = 'createLinkPayment';
+
+    case CLOSE_INVOICE = 'closeInvoice';
 }

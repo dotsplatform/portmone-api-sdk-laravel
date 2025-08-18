@@ -10,8 +10,10 @@ namespace Dots\Portmone\App\Client;
 use Dots\Portmone\App\Client\Auth\DTO\PortmoneAuthDTO;
 use Dots\Portmone\App\Client\Exceptions\PortmoneException;
 use Dots\Portmone\App\Client\Requests\Payments\CapturePaymentRequest;
+use Dots\Portmone\App\Client\Requests\Payments\ClosePaymentRequest;
 use Dots\Portmone\App\Client\Requests\Payments\CreatePaymentLinkRequest;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\CapturePaymentRequestDTO;
+use Dots\Portmone\App\Client\Requests\Payments\DTO\ClosePaymentRequestDTO;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\CreatePaymentLinkRequestDTO;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\PaymentTransactionsRequestDTO;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\ReversePaymentRequestDTO;
@@ -21,6 +23,7 @@ use Dots\Portmone\App\Client\Resources\PortmonePaymentTransaction;
 use Dots\Portmone\App\Client\Resources\PortmonePaymentTransactions;
 use Dots\Portmone\App\Client\Responses\ErrorResponseDTO;
 use Dots\Portmone\App\Client\Responses\Payments\CapturePaymentResponseDTO;
+use Dots\Portmone\App\Client\Responses\Payments\ClosePaymentResponseDTO;
 use Dots\Portmone\App\Client\Responses\Payments\CreatePaymentLinkResponseDTO;
 use Dots\Portmone\App\Client\Responses\Payments\ReversePaymentResponseDTO;
 use RuntimeException;
@@ -44,6 +47,14 @@ class PortmoneConnector extends Connector
     public function createPaymentLink(CreatePaymentLinkRequestDTO $dto): CreatePaymentLinkResponseDTO
     {
         return $this->send(new CreatePaymentLinkRequest($dto, $this->authDto))->dto();
+    }
+
+    /**
+     * @throws PortmoneException
+     */
+    public function closePayment(ClosePaymentRequestDTO $dto): ClosePaymentResponseDTO
+    {
+        return $this->send(new ClosePaymentRequest($dto))->dto();
     }
 
     /**
