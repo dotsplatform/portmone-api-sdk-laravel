@@ -25,7 +25,7 @@ class ClosePaymentResponseDTO extends PortmoneResponseDTO
 
     protected ?string $pay_order_date;
 
-    protected float $bill_amount;
+    protected ?float $bill_amount;
 
     protected ?string $auth_code;
 
