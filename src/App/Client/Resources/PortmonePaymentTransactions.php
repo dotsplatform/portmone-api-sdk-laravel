@@ -29,7 +29,23 @@ class PortmonePaymentTransactions extends Collection implements FromArrayable
             return $this->getPayedActualAmount();
         }
 
+        if ($this->isPreauth()) {
+            return $this->getPreauthActualAmount();
+        }
+
         return $this->getLastActualTransaction()?->getBillAmount() ?? 0;
+    }
+
+    public function getPreauthActualAmount(): float
+    {
+        $amount = 0;
+        foreach ($this->all() as $transaction) {
+            if ($transaction->isPreauth()) {
+                $amount += $transaction->getBillAmount();
+            }
+        }
+
+        return $amount;
     }
 
     public function getPayedActualAmount(): float
