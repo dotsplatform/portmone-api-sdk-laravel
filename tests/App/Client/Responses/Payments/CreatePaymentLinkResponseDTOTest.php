@@ -8,6 +8,7 @@
 namespace Tests\App\Client\Responses\Payments;
 
 use Dots\Portmone\App\Client\Responses\Payments\CreatePaymentLinkResponseDTO;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class CreatePaymentLinkResponseDTOTest extends TestCase
@@ -26,9 +27,7 @@ class CreatePaymentLinkResponseDTOTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider fromArrayDataProvider
-     */
+    #[DataProvider('fromArrayDataProvider')]
     public function testFromArray(
         array $data,
         array $expectedData,
@@ -63,9 +62,7 @@ class CreatePaymentLinkResponseDTOTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider methodsProvider
-     */
+    #[DataProvider('methodsProvider')]
     public function testMethods(
         string $method,
         array $methodData,

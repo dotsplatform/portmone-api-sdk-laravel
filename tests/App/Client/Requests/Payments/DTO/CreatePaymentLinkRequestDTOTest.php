@@ -15,6 +15,7 @@ use Dots\Portmone\App\Client\Resources\Consts\Currency;
 use Dots\Portmone\App\Client\Resources\Consts\Preauth;
 use Dots\Portmone\App\Client\Resources\Order;
 use Dots\Portmone\App\Client\Resources\Payee;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class CreatePaymentLinkRequestDTOTest extends TestCase
@@ -48,9 +49,7 @@ class CreatePaymentLinkRequestDTOTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider fromArrayDataProvider
-     */
+    #[DataProvider('fromArrayDataProvider')]
     public function testFromArray(
         array $data,
         array $expectedData,

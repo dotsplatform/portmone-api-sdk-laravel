@@ -8,6 +8,7 @@
 namespace Tests\App\Client\Resources\Receivers;
 
 use Dots\Portmone\App\Client\Resources\Receivers\Receiver;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ReceiverTest extends TestCase
@@ -26,9 +27,7 @@ class ReceiverTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider fromArrayDataProvider
-     */
+    #[DataProvider('fromArrayDataProvider')]
     public function testFromArray(
         array $data,
         array $expectedData,

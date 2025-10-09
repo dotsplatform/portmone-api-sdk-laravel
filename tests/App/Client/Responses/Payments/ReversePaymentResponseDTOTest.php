@@ -9,6 +9,7 @@ namespace Tests\App\Client\Responses\Payments;
 
 use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 use Dots\Portmone\App\Client\Responses\Payments\ReversePaymentResponseDTO;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ReversePaymentResponseDTOTest extends TestCase
@@ -42,9 +43,7 @@ class ReversePaymentResponseDTOTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider fromArrayDataProvider
-     */
+    #[DataProvider('fromArrayDataProvider')]
     public function testFromArray(
         array $data,
         array $expectedData,

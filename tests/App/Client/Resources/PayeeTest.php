@@ -8,6 +8,7 @@
 namespace Tests\App\Client\Resources;
 
 use Dots\Portmone\App\Client\Resources\Payee;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class PayeeTest extends TestCase
@@ -28,9 +29,7 @@ class PayeeTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider fromArrayDataProvider
-     */
+    #[DataProvider('fromArrayDataProvider')]
     public function testFromArray(
         array $data,
         array $expectedData,
