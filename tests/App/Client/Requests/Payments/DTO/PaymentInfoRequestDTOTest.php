@@ -10,6 +10,7 @@ namespace Tests\App\Client\Requests\Payments\DTO;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\Consts\Method;
 use Dots\Portmone\App\Client\Requests\Payments\DTO\PaymentTransactionsRequestDTO;
 use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class PaymentInfoRequestDTOTest extends TestCase
@@ -33,9 +34,7 @@ class PaymentInfoRequestDTOTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider fromArrayDataProvider
-     */
+    #[DataProvider('fromArrayDataProvider')]
     public function testFromArray(
         array $data,
         array $expectedData,
@@ -86,9 +85,7 @@ class PaymentInfoRequestDTOTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider methodsProvider
-     */
+    #[DataProvider('methodsProvider')]
     public function testMethods(
         string $method,
         array $methodData,

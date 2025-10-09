@@ -9,6 +9,7 @@ namespace Tests\App\Client\Resources;
 
 use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 use Dots\Portmone\App\Client\Resources\PortmonePaymentTransaction;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\Generators\PortmonePaymentTransactionDataGenerator;
 use Tests\TestCase;
 
@@ -26,9 +27,7 @@ class PortmonePaymentTransactionTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider fromArrayDataProvider
-     */
+    #[DataProvider('fromArrayDataProvider')]
     public function testFromArray(
         array $data,
         array $expectedData,
@@ -133,9 +132,7 @@ class PortmonePaymentTransactionTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider methodsProvider
-     */
+    #[DataProvider('methodsProvider')]
     public function testMethods(
         string $method,
         array $methodData,

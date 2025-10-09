@@ -10,6 +10,7 @@ namespace Tests\App\Client\Resources;
 use Dots\Portmone\App\Client\Resources\Consts\Currency;
 use Dots\Portmone\App\Client\Resources\Consts\Preauth;
 use Dots\Portmone\App\Client\Resources\Order;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class OrderTest extends TestCase
@@ -34,9 +35,7 @@ class OrderTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider fromArrayDataProvider
-     */
+    #[DataProvider('fromArrayDataProvider')]
     public function testFromArray(
         array $data,
         array $expectedData,

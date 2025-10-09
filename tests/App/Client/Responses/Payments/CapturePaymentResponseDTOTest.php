@@ -9,6 +9,7 @@ namespace Tests\App\Client\Responses\Payments;
 
 use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 use Dots\Portmone\App\Client\Responses\Payments\CapturePaymentResponseDTO;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class CapturePaymentResponseDTOTest extends TestCase
@@ -37,9 +38,7 @@ class CapturePaymentResponseDTOTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider fromArrayDataProvider
-     */
+    #[DataProvider('fromArrayDataProvider')]
     public function testFromArray(
         array $data,
         array $expectedData,

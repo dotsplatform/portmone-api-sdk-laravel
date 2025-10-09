@@ -8,6 +8,7 @@
 namespace Tests\App\Client\Auth\DTO;
 
 use Dots\Portmone\App\Client\Auth\DTO\PortmoneAuthDTO;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class PortmoneAuthDTOTest extends TestCase
@@ -27,9 +28,7 @@ class PortmoneAuthDTOTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider fromArrayDataProvider
-     */
+    #[DataProvider('fromArrayDataProvider')]
     public function testFromArray(
         array $data,
         array $expectedData,

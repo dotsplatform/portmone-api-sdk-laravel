@@ -9,6 +9,7 @@ namespace Tests\App\Client\Resources;
 
 use Dots\Portmone\App\Client\Resources\Consts\PaymentStatus;
 use Dots\Portmone\App\Client\Resources\PortmonePaymentTransactions;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\Generators\PortmonePaymentTransactionDataGenerator;
 use Tests\TestCase;
 
@@ -27,9 +28,7 @@ class PortmonePaymentTransactionsTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider methodsProvider
-     */
+    #[DataProvider('methodsProvider')]
     public function testMethods(
         string $method,
         array $methodData,
@@ -107,6 +106,26 @@ class PortmonePaymentTransactionsTest extends TestCase
                     ],
                 ],
                 'expectedResult' => 300,
+            ],
+
+            'Test getActualAmount with two preauth transactions' => [
+                'method' => 'getActualAmount',
+                'methodData' => [],
+                'data' => [
+                    [
+                        'shopOrderNumber' => '1',
+                        'status' => PaymentStatus::PREAUTH,
+                        'billAmount' => 200,
+                        'pay_date' => '16.05.2024 15:45:33',
+                    ],
+                    [
+                        'shopOrderNumber' => '2',
+                        'status' => PaymentStatus::PREAUTH,
+                        'billAmount' => 300,
+                        'pay_date' => '16.05.2024 15:45:33',
+                    ],
+                ],
+                'expectedResult' => 500,
             ],
 
             'Test isPayed expects false if one not payed' => [
