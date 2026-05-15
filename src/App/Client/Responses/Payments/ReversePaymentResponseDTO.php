@@ -19,9 +19,9 @@ class ReversePaymentResponseDTO extends PortmoneResponseDTO
 
     protected ?string $description;
 
-    protected float $bill_amount;
+    protected ?float $bill_amount;
 
-    protected PaymentStatus $status;
+    protected ?PaymentStatus $status;
 
     protected ?string $bank_id;
 
@@ -78,12 +78,12 @@ class ReversePaymentResponseDTO extends PortmoneResponseDTO
         return $this->description;
     }
 
-    public function getBillAmount(): float
+    public function getBillAmount(): ?float
     {
         return $this->bill_amount;
     }
 
-    public function getStatus(): PaymentStatus
+    public function getStatus(): ?PaymentStatus
     {
         return $this->status;
     }
